@@ -4,12 +4,8 @@ import { useKeenSlider } from 'keen-slider/react'
 
 import { HomeContainer, Product } from '../styles/pages/home'
 
-import camiseta1 from '../assets/1.png'
-import camiseta2 from '../assets/2.png'
-import camiseta3 from '../assets/3.png'
-
 import { stripe } from '../lib/stripe'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
 import 'keen-slider/keen-slider.min.css';
 import Stripe from 'stripe'
@@ -49,7 +45,19 @@ export default function Home({ products }: HomeProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+/* 
+  Usar o getStaticProps para uma pagina que vá ser igual para todos os usuários.
+  Caso precise de um id ou algo que seja especifico de uma user já não é o ideal 
+  ter uma pagina gerada staticamente.
+  - usar o revalidate, no retorno da função, indica o tempo que a pagina irá ser 
+    atualizada com novos dados.
+
+  usar o getServerSideProps para fazer requests do lado do servidor, bom para ter 
+  um bom indexização do site, trazendo o conteúdo apenas quando tiver os dados
+  definidos.
+*/
+
+export const getStaticProps: GetStaticProps = async () => {
   // expand: serve para adicionar o relacionamento que o produto tem com o preço no stripe
   // isso serve para qualquer relação que tem no stripe, como é uma lista o data sempre vem antes
   // se não fosse, caso fosse apenas um produto acessaríamos diretamente a chave do relacionamento
@@ -66,13 +74,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price,
+      price: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      }).format(price),
     }
   })
 
   return {
     props: {
-      products
-    }
+      products,
+    },
+    revalidate: 60 * 60 * 2 // 2 hours
   }
 }
