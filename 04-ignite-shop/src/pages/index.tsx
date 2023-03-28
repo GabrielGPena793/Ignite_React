@@ -17,7 +17,7 @@ interface HomeProps {
     id: string;
     name: string;
     imageUrl: string;
-    price: number;
+    price: string;
   }[]
 }
 
@@ -50,8 +50,8 @@ export default function Home({ products }: HomeProps) {
 
 /* 
   Usar o getStaticProps para uma pagina que vá ser igual para todos os usuários.
-  Caso precise de um id ou algo que seja especifico de uma user já não é o ideal 
-  ter uma pagina gerada staticamente.
+  Caso a pagina dependa de uma informação do contexto de execução da pagina: cookie, usuário logado, alguma informação em tempo real
+  não é o ideal ter uma pagina gerada staticamente.
   - usar o revalidate, no retorno da função, indica o tempo que a pagina irá ser 
     atualizada com novos dados.
 
