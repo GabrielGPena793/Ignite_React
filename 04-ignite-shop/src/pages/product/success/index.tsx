@@ -37,6 +37,22 @@ export default function Success({customerName, product }: SuccessProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+
+  /* 
+    Conseguimos fazer um redirecionamento pelo próprio next, caso não atenda a alguma 
+    condição.
+    redirect -> informamos o destination e se é permanent
+    notFound -> se colocarmos como true ele mostra a tela de 404
+  */
+  if (!query.session_id) { 
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      }
+    }
+  }
+
   const sessionId = String(query.session_id);
 
   const session = await stripe.checkout.sessions.retrieve(sessionId, {

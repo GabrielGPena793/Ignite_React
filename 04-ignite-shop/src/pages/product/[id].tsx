@@ -84,11 +84,11 @@ export default function Product({ product }: ProductProps) {
   Também podemos deixar o array vazio e deixar que ele crie tudo sob demanda.
 
   Usamos também o fallback para termos acesso ao estado da page e saber se já foram concluídos
-  a request dos dados, para que a pagina não tenha um carregamento antes desses dados sejam concluídos
+  a requests dos dados, para que a pagina não tenha um carregamento antes desses dados sejam concluídos
   O fallback tem 3 valores
   false -> ele não espera e já trás a pagina antes da requisição podendo ocorrer um erro, caso a pagina não tenha sido carregada antes
   true -> ele me da acesso ao estado do pagina, que através do useRouter(), conseguimos pegar o isFallback, tendo assim o controle
-          da pagina para colocarmos um load e previnir erros
+          da pagina para colocarmos um load e prevenir erros
   blocking -> Ele por si só já faz o bloqueio e só vai mostrar a pagina quando tiver tudo ok, porém pode demorar um pouco
 */
 
