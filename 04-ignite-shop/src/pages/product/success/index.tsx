@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   /* 
     Conseguimos fazer um redirecionamento pelo próprio next, caso não atenda a alguma 
     condição.
-    redirect -> informamos o destination e se é permanent
+    redirect -> informamos o destination e se é permanent, informando se vai ser sempre redirecionando ou não
     notFound -> se colocarmos como true ele mostra a tela de 404
   */
   if (!query.session_id) { 
