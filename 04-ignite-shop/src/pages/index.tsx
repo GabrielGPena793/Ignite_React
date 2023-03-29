@@ -32,23 +32,30 @@ export default function Home({ products }: HomeProps) {
   })
 
   return (
-    <HomeContainer ref={sliderRef} className='keen-slider'>
+    <>
+      {/*
+         Conseguimos colocar um head em cada componente para configuramos melhor cada pagina,
+        com isso temos uma melhora no SO do google, o head irá substituir as informações do Head padrão,
+        com isso conseguimos definir melhor cada pagina
+      */}
       <Head>
-        <title>Ignite Shop</title>
+        <title>Home | Ignite Shop</title>
       </Head>
-      {products.map(product => (
-        <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
-          <Product  className='keen-slider__slide'>
-            <Image src={product.imageUrl} width={520} height={480} alt='' />
+      <HomeContainer ref={sliderRef} className='keen-slider'>
+        {products.map(product => (
+          <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
+            <Product className='keen-slider__slide'>
+              <Image src={product.imageUrl} width={520} height={480} alt='' />
 
-            <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price}</span>
-            </footer>
-          </Product>
-        </Link>
-      ))}
-    </HomeContainer>
+              <footer>
+                <strong>{product.name}</strong>
+                <span>{product.price}</span>
+              </footer>
+            </Product>
+          </Link>
+        ))}
+      </HomeContainer>
+    </>
   )
 }
 
