@@ -9,11 +9,10 @@ export const HomeContainer = styled('main', {
 })
 
 export const Product = styled('div', {
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   borderRadius: 8,
-  cursor: 'pointer',
   position: 'relative',
   overflow: 'hidden',
+  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
 
   display: 'flex',
   alignItems: 'center',
@@ -50,7 +49,8 @@ export const Product = styled('div', {
     span: {
       fontSize: '$xl',
       fontWeight: 'bold',
-      color: '$green300'
+      color: '$green300',
+      display: 'block',
     }
   },
 
@@ -61,4 +61,19 @@ export const Product = styled('div', {
     }
   }
 
+})
+
+export const ButtonAddCart = styled('button', {
+  padding: 12,
+  backgroundColor: '$green500',
+  cursor: 'pointer',
+  borderRadius: 6,
+  border: 'none',
+  transition: 'all 0.2s ease-in-out',
+  lineHeight: 0,
+
+  '&:hover': {
+    backgroundColor: '$green300',
+  }
+ 
 })

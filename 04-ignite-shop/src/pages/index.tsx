@@ -3,8 +3,9 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 import { useKeenSlider } from 'keen-slider/react'
+import { Handbag } from '@phosphor-icons/react'
 
-import { HomeContainer, Product } from '../styles/pages/home'
+import { ButtonAddCart, HomeContainer, Product } from '../styles/pages/home'
 
 import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
@@ -43,16 +44,23 @@ export default function Home({ products }: HomeProps) {
       </Head>
       <HomeContainer ref={sliderRef} className='keen-slider'>
         {products.map(product => (
-          <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
-            <Product className='keen-slider__slide'>
-              <Image src={product.imageUrl} width={520} height={480} alt='' />
+          <Product key={product.id} className='keen-slider__slide'>
+            <Image src={product.imageUrl} width={520} height={480} alt='' />
 
-              <footer>
+            <footer>
+              <div>
                 <strong>{product.name}</strong>
                 <span>{product.price}</span>
-              </footer>
-            </Product>
-          </Link>
+              </div>
+
+              <Link href={`/product/${product.id}`} prefetch={false}>
+                <ButtonAddCart type='button'>
+                  <Handbag width={24} height={24} weight='bold' color='#fff' />
+                </ButtonAddCart>
+              </Link>
+
+            </footer>
+          </Product>
         ))}
       </HomeContainer>
     </>
