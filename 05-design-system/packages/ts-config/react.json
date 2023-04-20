@@ -1,0 +1,8 @@
+{
+  "extends": "./base.json",
+  "compileOptions": {
+    "jsx": "react-jsx",
+    "lib": ["dom", "ES2015"],
+    "target": "es6"
+  }
+}
